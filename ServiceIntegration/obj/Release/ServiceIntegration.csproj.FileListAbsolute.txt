@@ -56,3 +56,4 @@ C:\Users\Asus\source\repos\ServiceIntegration\ServiceIntegration\obj\Release\Ser
 C:\Users\Asus\source\repos\ServiceIntegration\ServiceIntegration\obj\Release\ServiceIntegration.csproj.CopyComplete
 C:\Users\Asus\source\repos\ServiceIntegration\ServiceIntegration\obj\Release\ServiceIntegration.dll
 C:\Users\Asus\source\repos\ServiceIntegration\ServiceIntegration\obj\Release\ServiceIntegration.pdb
+C:\Users\Asus\source\repos\ServiceIntegration\ServiceIntegration\obj\Release\ServiceIntegration.csprojAssemblyReference.cache

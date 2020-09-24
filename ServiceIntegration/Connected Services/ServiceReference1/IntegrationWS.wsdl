@@ -1,0 +1,985 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="PostWorkOrder">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="oGenericWorkOrderInput" type="tns:GenericWorkOrderInput" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="GenericWorkOrderInput">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="WorkOrderID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ProductCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="BatchNumber" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ExpiryDate" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="MfgDate" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="Quantity" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="WorkOrderType" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="LineID" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="PostWorkOrderResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="PostWorkOrderResult" type="tns:GenericWorkOrderOutput" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="GenericWorkOrderOutput">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="WorkOrderID" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsSucceed" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="ErrorMessage" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetCodeInfo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="strCode" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCodeInfoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetCodeInfoResult" type="tns:CodeGeneralInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="CodeGeneralInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="BarcodeCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="GTIN" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Batch" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ExpDate" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="Quantity" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="SubQuantity" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="BarcodeDamage" nillable="true" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsMixed" nillable="true" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="ParentBarcodeCode" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="WorkOrderID" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="TransactionID" nillable="true" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="IntegrationKey" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ProductCode" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ProductID" nillable="true" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="ProductName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CodeType" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="HierarchyType" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Cdate" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ErrorMessage" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsSucceed" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="PostDeactivation">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="lstCode" type="tns:ArrayOfString" />
+            <s:element minOccurs="0" maxOccurs="1" name="Reason" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfString">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="PostDeactivationResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="PostDeactivationResult" type="tns:ArrayOfPostDeactivationsBarcodesOutput" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfPostDeactivationsBarcodesOutput">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="PostDeactivationsBarcodesOutput" nillable="true" type="tns:PostDeactivationsBarcodesOutput" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="PostDeactivationsBarcodesOutput">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="BarcodeCode" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="OrderState" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="Error" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ErrorMessage" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsSucceed" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="PostTransaction">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="oPostTransactionInput" type="tns:PostTransactionInput" />
+            <s:element minOccurs="0" maxOccurs="1" name="oPostTransactionProductsInput" type="tns:ArrayOfPostTransactionProductsInput" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="PostTransactionInput">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="From" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Type" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DocumentNo" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="DocumentDate" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="Customer" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="BillTo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DeactivationCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ExportCountryCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CustomField1" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CustomField2" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CustomField3" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="CustomField4" nillable="true" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="CustomField5" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfPostTransactionProductsInput">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="PostTransactionProductsInput" nillable="true" type="tns:PostTransactionProductsInput" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="PostTransactionProductsInput">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ProductID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Batch" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Quantity" type="s:decimal" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="PostTransactionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="PostTransactionResult" type="tns:PostTransactionOutput" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="PostTransactionOutput">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="OrderState" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="Error" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ErrorMessage" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsSucceed" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="PostTransactionWithDetail">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="oPostTransactionInput" type="tns:PostTransactionWithDetailInput" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="PostTransactionWithDetailInput">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="From" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TransactionType" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Delivery" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Customer" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Codes" type="tns:ArrayOfCodeGeneral" />
+          <s:element minOccurs="1" maxOccurs="1" name="DocumentDate" nillable="true" type="s:dateTime" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfCodeGeneral">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="CodeGeneral" nillable="true" type="tns:CodeGeneral" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="CodeGeneral">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="CodeRaw" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CodeType" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ContainerType" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ExpiryDate" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="BatchNumber" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ParentCodeRaw" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="PostTransactionWithDetailResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="PostTransactionWithDetailResult" type="tns:PostTransactionOutput" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PostWorkOrderQARelease">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="strWorkOrderID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PostWorkOrderQAReleaseResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="PostWorkOrderQAReleaseResult" type="tns:PostWorkOrderQAReleaseOutput" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="PostWorkOrderQAReleaseOutput">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="OrderState" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="Error" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ErrorMessage" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsSucceed" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="PostStakeHolder">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="oPostStakeHolderInput" type="tns:PostStakeHolderInput" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="PostStakeHolderInput">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="StakeholderID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="StakeholderName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="StakeholderGLN" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ParentStakeholderGLN" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="PostStakeHolderResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="PostStakeHolderResult" type="tns:PostStakeHolderOutput" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="PostStakeHolderOutput">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ErrorMessage" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsSucceed" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="PostProduct">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="oPostProductInput" type="tns:PostProductInput" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="PostProductInput">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="CountryCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="StakeholderGLN" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ProductID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ProductName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="GTIN" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="listProductCodes" type="tns:ArrayOfProductCodesInput" />
+          <s:element minOccurs="0" maxOccurs="1" name="listRecipeDetails" type="tns:ArrayOfRecipeDetailsInput" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfProductCodesInput">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ProductCodesInput" nillable="true" type="tns:ProductCodesInput" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ProductCodesInput">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Type" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Key" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Value" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfRecipeDetailsInput">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="RecipeDetailsInput" nillable="true" type="tns:RecipeDetailsInput" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="RecipeDetailsInput">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="RecipeFieldID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="HierarchyTypeValue" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DetailValue" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="PostProductResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="PostProductResult" type="tns:PostProductOutput" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="PostProductOutput">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ErrorMessage" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsSucceed" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetTransactionStatus">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="strDocumentNo" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strTransactionType" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTransactionStatusResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetTransactionStatusResult" type="tns:GetTransactionOutput" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="GetTransactionOutput">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="IsSucceed" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="ErrorCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ErrorMessage" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="From" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Reason" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Delivery" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Customer" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="StatusID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Status" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsCancelable" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetTransactionCode">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="strDocumentNo" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strTransactionType" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTransactionCodeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetTransactionCodeResult" type="tns:GetTransactionCodes" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="GetTransactionCodes">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="TransactionCodes" type="tns:ArrayOfTransactionCodes" />
+          <s:element minOccurs="0" maxOccurs="1" name="Status" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ErrorCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ErrorMessage" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfTransactionCodes">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="TransactionCodes" nillable="true" type="tns:TransactionCodes" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="TransactionCodes">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Code" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="HierarchyType" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ParentCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ParentHierarchyType" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="CancelTransaction">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="strDocumentNo" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strTransactionType" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CancelTransactionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CancelTransactionResult" type="tns:CancelTransactionOutput" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="CancelTransactionOutput">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Delivery" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Reason" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="StatusID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Status" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Error" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ErrorMessage" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsSucceed" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="HasProductBatch">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="strProductCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strBatchNumber" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="HasProductBatchResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="HasProductBatchResult" type="tns:HasProductBatchOutput" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="HasProductBatchOutput">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="IsSucceed" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="ErrorMessage" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Status" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="ProductCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="BatchNumber" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="CancelWorkOrder">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="strWorkOrderID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CancelWorkOrderResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CancelWorkOrderResult" type="tns:GenericWorkOrderOutput" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetRecipeFields">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetRecipeFieldsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetRecipeFieldsResult" type="tns:RecipeFieldOutputList" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="RecipeFieldOutputList">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="IsSucceed" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="ErrorMessage" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="RecipeFields" type="tns:ArrayOfRecipeFieldOutput" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfRecipeFieldOutput">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="RecipeFieldOutput" nillable="true" type="tns:RecipeFieldOutput" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="RecipeFieldOutput">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="RecipeFieldID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DataType" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="PostProductDetails">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="oPostProductInput" type="tns:PostProductInput" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PostProductDetailsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="PostProductDetailsResult" type="tns:PostProductOutput" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTransactionProducts">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="transactionProductInput" type="tns:TransactionProductInput" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="TransactionProductInput">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="TransactionDocumentNo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TransactionTypeID" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetTransactionProductsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetTransactionProductsResult" type="tns:TransactionProductOutputList" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="TransactionProductOutputList">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="IsSucceed" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="ErrorMessage" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TransactionProducts" type="tns:ArrayOfTransactionProductOutput" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfTransactionProductOutput">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="TransactionProductOutput" nillable="true" type="tns:TransactionProductOutput" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="TransactionProductOutput">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ProductID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ProductName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ProductBatch" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="TransactionProductsQty" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="TransactionProductsTargetQty" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="PostWorkOrderSoapIn">
+    <wsdl:part name="parameters" element="tns:PostWorkOrder" />
+  </wsdl:message>
+  <wsdl:message name="PostWorkOrderSoapOut">
+    <wsdl:part name="parameters" element="tns:PostWorkOrderResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCodeInfoSoapIn">
+    <wsdl:part name="parameters" element="tns:GetCodeInfo" />
+  </wsdl:message>
+  <wsdl:message name="GetCodeInfoSoapOut">
+    <wsdl:part name="parameters" element="tns:GetCodeInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="PostDeactivationSoapIn">
+    <wsdl:part name="parameters" element="tns:PostDeactivation" />
+  </wsdl:message>
+  <wsdl:message name="PostDeactivationSoapOut">
+    <wsdl:part name="parameters" element="tns:PostDeactivationResponse" />
+  </wsdl:message>
+  <wsdl:message name="PostTransactionSoapIn">
+    <wsdl:part name="parameters" element="tns:PostTransaction" />
+  </wsdl:message>
+  <wsdl:message name="PostTransactionSoapOut">
+    <wsdl:part name="parameters" element="tns:PostTransactionResponse" />
+  </wsdl:message>
+  <wsdl:message name="PostTransactionWithDetailSoapIn">
+    <wsdl:part name="parameters" element="tns:PostTransactionWithDetail" />
+  </wsdl:message>
+  <wsdl:message name="PostTransactionWithDetailSoapOut">
+    <wsdl:part name="parameters" element="tns:PostTransactionWithDetailResponse" />
+  </wsdl:message>
+  <wsdl:message name="PostWorkOrderQAReleaseSoapIn">
+    <wsdl:part name="parameters" element="tns:PostWorkOrderQARelease" />
+  </wsdl:message>
+  <wsdl:message name="PostWorkOrderQAReleaseSoapOut">
+    <wsdl:part name="parameters" element="tns:PostWorkOrderQAReleaseResponse" />
+  </wsdl:message>
+  <wsdl:message name="PostStakeHolderSoapIn">
+    <wsdl:part name="parameters" element="tns:PostStakeHolder" />
+  </wsdl:message>
+  <wsdl:message name="PostStakeHolderSoapOut">
+    <wsdl:part name="parameters" element="tns:PostStakeHolderResponse" />
+  </wsdl:message>
+  <wsdl:message name="PostProductSoapIn">
+    <wsdl:part name="parameters" element="tns:PostProduct" />
+  </wsdl:message>
+  <wsdl:message name="PostProductSoapOut">
+    <wsdl:part name="parameters" element="tns:PostProductResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetTransactionStatusSoapIn">
+    <wsdl:part name="parameters" element="tns:GetTransactionStatus" />
+  </wsdl:message>
+  <wsdl:message name="GetTransactionStatusSoapOut">
+    <wsdl:part name="parameters" element="tns:GetTransactionStatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetTransactionCodeSoapIn">
+    <wsdl:part name="parameters" element="tns:GetTransactionCode" />
+  </wsdl:message>
+  <wsdl:message name="GetTransactionCodeSoapOut">
+    <wsdl:part name="parameters" element="tns:GetTransactionCodeResponse" />
+  </wsdl:message>
+  <wsdl:message name="CancelTransactionSoapIn">
+    <wsdl:part name="parameters" element="tns:CancelTransaction" />
+  </wsdl:message>
+  <wsdl:message name="CancelTransactionSoapOut">
+    <wsdl:part name="parameters" element="tns:CancelTransactionResponse" />
+  </wsdl:message>
+  <wsdl:message name="HasProductBatchSoapIn">
+    <wsdl:part name="parameters" element="tns:HasProductBatch" />
+  </wsdl:message>
+  <wsdl:message name="HasProductBatchSoapOut">
+    <wsdl:part name="parameters" element="tns:HasProductBatchResponse" />
+  </wsdl:message>
+  <wsdl:message name="CancelWorkOrderSoapIn">
+    <wsdl:part name="parameters" element="tns:CancelWorkOrder" />
+  </wsdl:message>
+  <wsdl:message name="CancelWorkOrderSoapOut">
+    <wsdl:part name="parameters" element="tns:CancelWorkOrderResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetRecipeFieldsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetRecipeFields" />
+  </wsdl:message>
+  <wsdl:message name="GetRecipeFieldsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetRecipeFieldsResponse" />
+  </wsdl:message>
+  <wsdl:message name="PostProductDetailsSoapIn">
+    <wsdl:part name="parameters" element="tns:PostProductDetails" />
+  </wsdl:message>
+  <wsdl:message name="PostProductDetailsSoapOut">
+    <wsdl:part name="parameters" element="tns:PostProductDetailsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetTransactionProductsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetTransactionProducts" />
+  </wsdl:message>
+  <wsdl:message name="GetTransactionProductsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetTransactionProductsResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IntegrationServicesSoap">
+    <wsdl:operation name="PostWorkOrder">
+      <wsdl:input message="tns:PostWorkOrderSoapIn" />
+      <wsdl:output message="tns:PostWorkOrderSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCodeInfo">
+      <wsdl:input message="tns:GetCodeInfoSoapIn" />
+      <wsdl:output message="tns:GetCodeInfoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PostDeactivation">
+      <wsdl:input message="tns:PostDeactivationSoapIn" />
+      <wsdl:output message="tns:PostDeactivationSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PostTransaction">
+      <wsdl:input message="tns:PostTransactionSoapIn" />
+      <wsdl:output message="tns:PostTransactionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PostTransactionWithDetail">
+      <wsdl:input message="tns:PostTransactionWithDetailSoapIn" />
+      <wsdl:output message="tns:PostTransactionWithDetailSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PostWorkOrderQARelease">
+      <wsdl:input message="tns:PostWorkOrderQAReleaseSoapIn" />
+      <wsdl:output message="tns:PostWorkOrderQAReleaseSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PostStakeHolder">
+      <wsdl:input message="tns:PostStakeHolderSoapIn" />
+      <wsdl:output message="tns:PostStakeHolderSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PostProduct">
+      <wsdl:input message="tns:PostProductSoapIn" />
+      <wsdl:output message="tns:PostProductSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTransactionStatus">
+      <wsdl:input message="tns:GetTransactionStatusSoapIn" />
+      <wsdl:output message="tns:GetTransactionStatusSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTransactionCode">
+      <wsdl:input message="tns:GetTransactionCodeSoapIn" />
+      <wsdl:output message="tns:GetTransactionCodeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CancelTransaction">
+      <wsdl:input message="tns:CancelTransactionSoapIn" />
+      <wsdl:output message="tns:CancelTransactionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="HasProductBatch">
+      <wsdl:input message="tns:HasProductBatchSoapIn" />
+      <wsdl:output message="tns:HasProductBatchSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CancelWorkOrder">
+      <wsdl:input message="tns:CancelWorkOrderSoapIn" />
+      <wsdl:output message="tns:CancelWorkOrderSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRecipeFields">
+      <wsdl:input message="tns:GetRecipeFieldsSoapIn" />
+      <wsdl:output message="tns:GetRecipeFieldsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PostProductDetails">
+      <wsdl:input message="tns:PostProductDetailsSoapIn" />
+      <wsdl:output message="tns:PostProductDetailsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTransactionProducts">
+      <wsdl:input message="tns:GetTransactionProductsSoapIn" />
+      <wsdl:output message="tns:GetTransactionProductsSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="IntegrationServicesSoap" type="tns:IntegrationServicesSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="PostWorkOrder">
+      <soap:operation soapAction="http://tempuri.org/PostWorkOrder" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCodeInfo">
+      <soap:operation soapAction="http://tempuri.org/GetCodeInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PostDeactivation">
+      <soap:operation soapAction="http://tempuri.org/PostDeactivation" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PostTransaction">
+      <soap:operation soapAction="http://tempuri.org/PostTransaction" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PostTransactionWithDetail">
+      <soap:operation soapAction="http://tempuri.org/PostTransactionWithDetail" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PostWorkOrderQARelease">
+      <soap:operation soapAction="http://tempuri.org/PostWorkOrderQARelease" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PostStakeHolder">
+      <soap:operation soapAction="http://tempuri.org/PostStakeHolder" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PostProduct">
+      <soap:operation soapAction="http://tempuri.org/PostProduct" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTransactionStatus">
+      <soap:operation soapAction="http://tempuri.org/GetTransactionStatus" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTransactionCode">
+      <soap:operation soapAction="http://tempuri.org/GetTransactionCode" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CancelTransaction">
+      <soap:operation soapAction="http://tempuri.org/CancelTransaction" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="HasProductBatch">
+      <soap:operation soapAction="http://tempuri.org/HasProductBatch" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CancelWorkOrder">
+      <soap:operation soapAction="http://tempuri.org/CancelWorkOrder" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRecipeFields">
+      <soap:operation soapAction="http://tempuri.org/GetRecipeFields" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PostProductDetails">
+      <soap:operation soapAction="http://tempuri.org/PostProductDetails" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTransactionProducts">
+      <soap:operation soapAction="http://tempuri.org/GetTransactionProducts" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="IntegrationServicesSoap12" type="tns:IntegrationServicesSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="PostWorkOrder">
+      <soap12:operation soapAction="http://tempuri.org/PostWorkOrder" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCodeInfo">
+      <soap12:operation soapAction="http://tempuri.org/GetCodeInfo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PostDeactivation">
+      <soap12:operation soapAction="http://tempuri.org/PostDeactivation" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PostTransaction">
+      <soap12:operation soapAction="http://tempuri.org/PostTransaction" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PostTransactionWithDetail">
+      <soap12:operation soapAction="http://tempuri.org/PostTransactionWithDetail" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PostWorkOrderQARelease">
+      <soap12:operation soapAction="http://tempuri.org/PostWorkOrderQARelease" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PostStakeHolder">
+      <soap12:operation soapAction="http://tempuri.org/PostStakeHolder" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PostProduct">
+      <soap12:operation soapAction="http://tempuri.org/PostProduct" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTransactionStatus">
+      <soap12:operation soapAction="http://tempuri.org/GetTransactionStatus" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTransactionCode">
+      <soap12:operation soapAction="http://tempuri.org/GetTransactionCode" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CancelTransaction">
+      <soap12:operation soapAction="http://tempuri.org/CancelTransaction" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="HasProductBatch">
+      <soap12:operation soapAction="http://tempuri.org/HasProductBatch" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CancelWorkOrder">
+      <soap12:operation soapAction="http://tempuri.org/CancelWorkOrder" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRecipeFields">
+      <soap12:operation soapAction="http://tempuri.org/GetRecipeFields" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PostProductDetails">
+      <soap12:operation soapAction="http://tempuri.org/PostProductDetails" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTransactionProducts">
+      <soap12:operation soapAction="http://tempuri.org/GetTransactionProducts" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="IntegrationServices">
+    <wsdl:port name="IntegrationServicesSoap" binding="tns:IntegrationServicesSoap">
+      <soap:address location="http://92.44.22.169:8022/IntegrationWS.asmx" />
+    </wsdl:port>
+    <wsdl:port name="IntegrationServicesSoap12" binding="tns:IntegrationServicesSoap12">
+      <soap12:address location="http://92.44.22.169:8022/IntegrationWS.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
